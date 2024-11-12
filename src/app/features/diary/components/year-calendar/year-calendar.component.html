@@ -1,0 +1,27 @@
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div *ngFor="let month of months">
+      <h3 class="text-lg font-semibold text-gray-800 mb-2">{{ month.name }}</h3>
+      <table class="w-full text-sm text-gray-700">
+        <thead>
+          <tr>
+            <th *ngFor="let day of ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat']" class="py-1">{{ day }}</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let week of month.weeks">
+            <td *ngFor="let date of week" class="py-1 text-center">
+              <button
+                *ngIf="date"
+                (click)="selectDate(date)"
+                class="w-8 h-8 rounded-full hover:bg-blue-500 hover:text-white"
+                [ngClass]="{'bg-blue-500 text-white': hasEntry(date)}"
+              >
+                {{ date.getDate() }}
+              </button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
